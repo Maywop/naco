@@ -1,0 +1,4 @@
+INCLUDE $HPEESOF_DIR/oalibs/analog_rf.defs
+DEFINE naco_lib naco_lib
+ASSIGN naco_lib libMode shared
+INCLUDE $HPEESOF_DIR/oalibs/dsp.defs

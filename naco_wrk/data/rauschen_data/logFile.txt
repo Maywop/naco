@@ -1,0 +1,17 @@
+
+hpeesofsim (*) 570.shp Jul 18 2022, MINT version 5
+    (64-bit windows built: Tue Jul 19, 2022 06:26:23 +0000)
+
+
+***** Simulation started at Wed Jan 18 02:45:23 2023
+      Running on host: "DESKTOP-LFACKGQ"
+      In Directory: "C:\Users\Raman\naco_wrk\data"
+      Process ID: 8156
+
+`DF': Simulation started. 
+`DF': Scheduling completed in 0 milliseconds (CPU time).
+`DF': Simulation completed in 32 milliseconds (CPU time).
+
+Resource usage:
+  Total stopwatch time     =     0.70 seconds.
+

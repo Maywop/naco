@@ -1,0 +1,16 @@
+#
+# Edit Lock-Stake file. CAUTION: Please do not change.
+#
+# Information about current Edit Lock Owner.
+#
+LockStakeVersion               1.1
+LoginName                      Raman
+HostName                       DESKTOP-LFACKGQ
+ProcessIdentifier              5368
+ProcessCreationTime_UTC        1673979127
+ProcessCreationTime_Readable   Tue Jan 17 19:12:07 2023 W. Europe Standard Time
+AppIdentifier                  OA File System Design Manager
+OSType                         win32
+ReasonForPlacingEditLock       OpenAccess edit lock
+FilePathUsedToEditLock         C:\Users\Raman\naco_wrk\naco_lib\tech.db.cdslck
+TimeEditLocked                 Tue Jan 17 19:12:43 2023 W. Europe Standard Time

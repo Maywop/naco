@@ -1,0 +1,77 @@
+
+Options ResourceUsage=yes UseNutmegFormat=no EnableOptim=no TopDesignName="naco_lib:cell_1:schematic" DcopOutputNodeVoltages=yes DcopOutputPinCurrents=yes DcopOutputAllSweepPoints=no DcopOutputDcopType=0
+define AddCx2 ( N__3  N__2  N__0 ) 
+;parameters 
+_vKeysightEEsof_dSDF_nAddCx_lsdfstars:A1  N__1 N__0 
+_vKeysightEEsof_dHOF_nNop_lhofstars_pinput_x3d2_aBusMerge2:B1  N__3 N__2 N__1 
+end AddCx2
+define g_matrix ( P1  P2 ) 
+;parameters 
+_vKeysightEEsof_dSDF_nMpyInt_x5fM_lsdfmatrix:M1  P1 N__5 N__2 
+_vKeysightEEsof_dSDF_nInt_x5fM_lsdfmatrix:I1  N__5 NumRows=4 NumCols=7 IntMatrixContents="1 0 0 0 1 1 0 0 1 0 0 1 0 1 0 0 1 0 0 1 1 0 0 0 1 1 1 1" 
+_vKeysightEEsof_dSDF_nUnPkInt_x5fM_lsdfmatrix:U1  N__2 N__1 NumRows=1 NumCols=7 
+_vKeysightEEsof_dSDF_nModuloInt_lsdfstars:M2  N__1 N__4 Modulo=2 
+_vKeysightEEsof_dSDF_nPackInt_x5fM_lsdfmatrix:P1  N__4 P2 NumRows=1 NumCols=7 
+end g_matrix
+define h_matrix2 ( P1  P2 ) 
+;parameters 
+_vKeysightEEsof_dSDF_nMpyInt_x5fM_lsdfmatrix:M1  P1 N__4 N__6 
+_vKeysightEEsof_dSDF_nInt_x5fM_lsdfmatrix:I1  N__4 NumRows=7 NumCols=3 IntMatrixContents="1 1 0 1 0 1 0 1 1 1 1 1 1 0 0 0 1 0 0 0 1" 
+_vKeysightEEsof_dSDF_nUnPkInt_x5fM_lsdfmatrix:U1  N__6 N__5 NumRows=1 NumCols=3 
+_vKeysightEEsof_dSDF_nModuloInt_lsdfstars:M2  N__5 N__8 Modulo=2 
+_vKeysightEEsof_dSDF_nBitsToInt_lsdfstars:B1  N__8 N__2 nBits=3 
+_vKeysightEEsof_dSDF_nTableInt_x5fM_lsdfmatrix:T1  N__2 P2 NumRows=1 NumCols=7 IntTable="0 0 0 0 0 0 0 0 0 0 0 0 0 1 0 0 0 0 0 1 0 0 0 1 0 0 0 0 0 0 0 0 1 0 0 0 1 0 0 0 0 0 1 0 0 0 0 0 0 0 0 0 1 0 0 0" 
+end h_matrix2
+define rauschen ( P1  P2 ) 
+;parameters 
+_vKeysightEEsof_dSDF_nMapper_lsdfadvcommstars:M1  P1 N__5 ModType=0 MappingTable="" 
+AddCx2:A1  N__5 N__0 N__10 
+
+variance=0.1 tune{ 0.1 to 2 by 0.1 }
+_vKeysightEEsof_dSDF_nRampFloat_lsdfstars:R2  N__8 Step=0 Value=0.0 
+_vKeysightEEsof_dSDF_nRectToCx_lsdfstars:R3  N__9 N__8 N__0 
+_vKeysightEEsof_dSDF_nDemapper_lsdfadvcommstars:D1  N__10 P2 ModType=0 MappingTable="" 
+_vKeysightEEsof_dSDF_nNumericSink_ltsdfsinks:N1  P1 Plot=0 Start=DefaultNumericStart Stop=DefaultNumericStop ControlSimulation=1 
+_vKeysightEEsof_dSDF_nNumericSink_ltsdfsinks:N2  N__5 Plot=0 Start=DefaultNumericStart Stop=DefaultNumericStop ControlSimulation=1 
+_vKeysightEEsof_dSDF_nNumericSink_ltsdfsinks:N3  N__10 Plot=0 Start=DefaultNumericStart Stop=DefaultNumericStop ControlSimulation=1 
+_vKeysightEEsof_dSDF_nNumericSink_ltsdfsinks:N4  N__9 Plot=0 Start=DefaultNumericStart Stop=DefaultNumericStop ControlSimulation=1 
+_vKeysightEEsof_dSDF_nNumericSink_ltsdfsinks:N5  P2 Plot=0 Start=DefaultNumericStart Stop=DefaultNumericStop ControlSimulation=1 
+_vKeysightEEsof_dSDF_nIID_x5fGaussian_lsdfstars:I1  N__9 Mean=0.0 Variance=variance 
+end rauschen
+_vKeysightEEsof_dSDF_nInt_x5fM_lsdfmatrix:I1  N__4 NumRows=1 NumCols=4 IntMatrixContents="1 0 1 0" 
+DefaultNumericStart=0
+DefaultNumericStop=8
+DefaultTimeStart=0 usec
+DefaultTimeStop=100 usec
+DefaultSeed=1234567
+DefaultRIn=50 Ohm
+DefaultROut=50 Ohm
+DefaultRLoad=1.0e18 Ohm
+DefaultRTemp=-273.15
+__DefaultPartition=1
+__SimulationID=0
+_vKeysightEEsof_dTSDF_nDF_ltsdf:DF DefaultTimeUnit=3 DefaultSeed=if (DefaultSeed==0) then 0 else (DefaultSeed+__SimulationID) endif DefaultPartition=__DefaultPartition OutVar="" ProfileTimes="" logFile="" DeadlockManager=0 CktCosimInputs=0 OutputPlan="DF_Output" 
+OutputPlan:DF_Output \
+      Type="Output" \
+      UseSavedEquationNestLevel=yes \
+      SavedEquationNestLevel=2
+
+_vKeysightEEsof_dSDF_nNumericSink_ltsdfsinks:N1  N__1 Plot=0 Start=DefaultNumericStart Stop=DefaultNumericStop/2 ControlSimulation=1 
+g_matrix:X1  N__4 N__2 
+_vKeysightEEsof_dSDF_nNumericSink_ltsdfsinks:N2  N__3 Plot=0 Start=DefaultNumericStart Stop=DefaultNumericStop-1 ControlSimulation=1 
+_vKeysightEEsof_dSDF_nUnPkInt_x5fM_lsdfmatrix:U1  N__4 N__1 NumRows=1 NumCols=4 
+_vKeysightEEsof_dSDF_nUnPkInt_x5fM_lsdfmatrix:U2  N__2 N__3 NumRows=1 NumCols=7 
+_vKeysightEEsof_dSDF_nNumericSink_ltsdfsinks:N3  N__6 Plot=0 Start=DefaultNumericStart Stop=DefaultNumericStop-1 ControlSimulation=1 
+_vKeysightEEsof_dSDF_nUnPkInt_x5fM_lsdfmatrix:U4  N__2 N__6 NumRows=1 NumCols=7 
+_vKeysightEEsof_dSDF_nNumericSink_ltsdfsinks:N6  N__15 Plot=0 Start=DefaultNumericStart Stop=DefaultNumericStop-1 ControlSimulation=1 
+_vKeysightEEsof_dSDF_nPackInt_x5fM_lsdfmatrix:P1  N__8 N__0 NumRows=1 NumCols=7 
+h_matrix2:X2  N__0 N__12 
+_vKeysightEEsof_dSDF_nAddInt_x5fM_lsdfmatrix_pinput_x3d2_aAddInt2_x5fM:A3  N__12 N__0 N__13 
+_vKeysightEEsof_dSDF_nUnPkInt_x5fM_lsdfmatrix:U5  N__13 N__11 NumRows=1 NumCols=7 
+_vKeysightEEsof_dSDF_nModuloInt_lsdfstars:M2  N__11 N__14 Modulo=2 
+_vKeysightEEsof_dSDF_nNumericSink_ltsdfsinks:N4  N__14 Plot=0 Start=DefaultNumericStart Stop=DefaultNumericStop-1 ControlSimulation=1 
+_vKeysightEEsof_dSDF_nNumericSink_ltsdfsinks:N5  N__9 Plot=0 Start=DefaultNumericStart Stop=DefaultNumericStop/2 ControlSimulation=1 
+_vKeysightEEsof_dSDF_nChop_lsdfstars:C1  N__14 N__9 nRead=7 nWrite=4 Offset=0 UsePastInputs=1 
+_vKeysightEEsof_dSDF_nUnPkInt_x5fM_lsdfmatrix:U6  N__12 N__15 NumRows=1 NumCols=7 
+rauschen:X3  N__6 N__8 
+_vKeysightEEsof_dSDF_nNumericSink_ltsdfsinks:N7  N__8 Plot=0 Start=DefaultNumericStart Stop=DefaultNumericStop-1 ControlSimulation=1 
